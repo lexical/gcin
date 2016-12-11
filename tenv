@@ -1,0 +1,37 @@
+#!/bin/bash -f
+ulimit -c unlimited
+rm -f core.*
+export PATH=.:$PATH:$PWD/modules
+export GCIN_TABLE_DIR=$PWD/data
+echo "GCIN_TABLE_DIR=$GCIN_TABLE_DIR"
+export GCIN_IM_CLIENT_NO_AUTO_EXEC=
+pkill gcin.test
+unset LC_CTYPE
+#export LC_CTYPE=zh_TW.UTF-8
+#export LANG=zh_TW
+export XMODIFIERS=@im=gcin_test
+#export GCIN_OUTPUT_FILTER=./gcin_filter
+export GCIN_ERR_COREDUMP
+export LD_LIBRARY_PATH="$PWD/im-client:$PWD/modules:$PWD"
+#export GCIN_PHO_KBM="pinyin-asdf asdfghjkl;"
+#export GCIN_DESTROY_WINDOW=1
+#./gcin.test --g-fatal-warnings &
+./gcin.test &
+gcinpid=$!
+sleep 1
+#export LD_PRELOAD="./gtk-im/im-gcin-cur.so"
+export GTK_IM_MODULE=gcin
+#export GTK_IM_MODULE=xim
+#sleep 5; gcin-message -text 'abcde' -duration 5000;
+#gedit a.txt
+leafpad
+#google-chrome
+#pcmanx
+#firefox
+#gnome-terminal
+#google-chrome
+#mozilla-thunderbird
+#~/eclipse/eclipse
+#/usr/lib/qt4/bin/qtconfig
+pkill gcin.test
+pkill leafpad

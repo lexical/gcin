@@ -1,0 +1,15 @@
+#### Turn off LD_RUN_PATH in ../gtk-im/Makefile to run this
+rm -f core.*
+make
+export XMODIFIERS=@im=gcin_test
+pkill gcin.test
+../gcin.test &
+
+export LC_ALL=zh_TW.Big5
+export LD_LIBRARY_PATH="./"
+
+export LD_PRELOAD=../gtk-im/im-gcin-cur.so
+gedit
+
+unset LD_PRELOAD
+pkill gcin.test

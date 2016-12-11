@@ -1,0 +1,9 @@
+pkill gcin.test
+export LC_ALL=zh_TW.Big5
+export XMODIFIERS=@im=gcin_test
+#valgrind ./gcin.test &
+./gcin.test &
+sleep 1
+crxvt &
+crxvt
+pkill gcin.test

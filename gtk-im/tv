@@ -1,0 +1,13 @@
+rm -f core.*
+make
+pkill gcin.test
+
+export LC_ALL=zh_TW.Big5
+export XMODIFIERS=@im=gcin_test
+export LD_LIBRARY_PATH="../im-client"
+
+export LD_PRELOAD=./im-gcin.so
+valgrind --tool=memcheck gedit
+
+unset LD_PRELOAD
+pkill gcin.test

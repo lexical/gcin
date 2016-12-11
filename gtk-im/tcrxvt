@@ -1,0 +1,12 @@
+rm -f core.*
+
+make
+export XMODIFIERS=@im=gcin_test
+pkill gcin.test
+../gcin.test &
+
+export LC_ALL=zh_TW.Big5
+
+crxvt
+
+pkill gcin.test
